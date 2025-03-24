@@ -119,7 +119,8 @@ export const ProjectTreeSelector = ({ onSelect, initialSelectedId }: ProjectTree
   };
 
   // Handle going back up a level
-  const handleGoBack = () => {
+  const handleGoBack = (e) => {
+    e.preventDefault();
     if (currentView.parentPath.length > 0) {
       // We need to find the parent node
       const parentPathWithoutLast = currentView.parentPath.slice(0, -1);
@@ -287,6 +288,7 @@ export const ProjectTreeSelector = ({ onSelect, initialSelectedId }: ProjectTree
                     size="sm" 
                     variant={selectedNode?.id === node.id ? "default" : "outline"}
                     onClick={(e) => {
+                      e.preventDefault();
                       e.stopPropagation();
                       handleSelectFromBrowse(node);
                     }}

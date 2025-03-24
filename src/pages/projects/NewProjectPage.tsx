@@ -67,15 +67,22 @@ const NewProjectPage = () => {
   });
 
   // Handle selection from the project tree
-  const handleProjectSelection = (selection: ProjectTreeSelection) => {
+  const handleProjectSelection = (selection: ProjectTreeSelection, event?: React.SyntheticEvent) => {
+    if (event) {
+      event.preventDefault(); // Prevent unintended form submission
+      event.stopPropagation(); // Stop event from bubbling
+    }
+  
     setProjectSelection(selection);
-    
+  
     // Update the budget field with the selected price
     form.setValue("budget_allocated", selection.totalPrice);
-    
+  
     // Update the project_type_id field with the selected node ID
     form.setValue("project_type_id", selection.nodeId);
   };
+  
+  
 
   const onSubmit = async (values: ProjectFormValues) => {
     setIsSubmitting(true);

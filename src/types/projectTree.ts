@@ -1,7 +1,7 @@
 
 // Types for the project tree structure
 export interface ProjectTreeNode {
-  id: string;
+  id: string | number;
   title: string;  // Changed back from 'name' to 'title'
   price: number;
   children?: ProjectTreeNode[];
